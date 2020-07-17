@@ -6,6 +6,6 @@ const PORT = process.env.PORT || 3002
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
-app.use('/tv-series', router)
+app.use('/tv', router)
 
 app.listen(PORT, _ => console.log(`tv-series service running at: http://localhost:${PORT}`))
