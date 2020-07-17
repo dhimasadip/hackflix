@@ -1,7 +1,7 @@
 const { ObjectId } = require('mongodb')
 const db = require('../config/mongo')
 
-const movie = db.collection(process.env.COLLECTION_NAME)
+const movie = db.collection(`${process.env.COLLECTION_NAME}`)
 
 class MovieModel {
     static find() {

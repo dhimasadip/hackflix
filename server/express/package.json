@@ -4,7 +4,9 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "start": "nodemon app.js"
+    "start": "nodemon app.js",
+    "movies": "nodemon ../services/movies/app.js",
+    "tv": "nodemon ../services/tv_series/app.js"
   },
   "keywords": [],
   "author": "Dhimas Adi",

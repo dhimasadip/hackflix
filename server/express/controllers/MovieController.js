@@ -55,14 +55,17 @@ class MovieController {
             const { data } = await MovieServer.post('/', newMovie)
             const key = `movie_${data.insertedId}`
             const [newData] = data.ops
+
             let oldData = await redis.get('movies')
             oldData = JSON.parse(oldData)
             const movies = oldData.concat(newData)
 
             await redis.del('movies')
-            redis.set('movies', JSON.stringify(movies))
-            redis.set(key, JSON.stringify(newData))
+            await redis.set('movies', JSON.stringify(movies))
+            await redis.set(key, JSON.stringify(newData))
+
             res.status(201).json(data)
+
         } catch (err) {
             console.log(err)
         }
@@ -74,14 +77,16 @@ class MovieController {
 
         try {
             const { data } = await MovieServer.delete(`/${id}`)
-            res.status(200).json(data)
-            redis.del(key)
-
+            
             let movies = await redis.get('movies')
             movies = JSON.parse(movies)
             const newMovies = movies.filter(el => el['_id'] != id)
+            
             await redis.del('movies')
-            redis.set('movies', JSON.stringify(newMovies))
+            await redis.del(key)
+            await redis.set('movies', JSON.stringify(newMovies))
+            
+            res.status(200).json(data)
 
         } catch (err) {
             console.log(err)

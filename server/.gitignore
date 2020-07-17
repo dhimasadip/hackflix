@@ -1,6 +1,4 @@
-express/orchestrator/node_modules
-express/movies/node_modules
-express/tv_series/node_modules
+express/node_modules
 orchestrator/node_modules
 services/movies/node_modules
 services/tv_series/node_modules
