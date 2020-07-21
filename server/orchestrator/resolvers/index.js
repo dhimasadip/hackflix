@@ -53,7 +53,6 @@ const resolvers = {
         .catch(console.log)
     },
     editMovie: (_, args) => {
-      console.log(args.edit, '<<<<<<')
       const { _id, title, overview, poster_path, popularity, tags } = args.edit
 
       return movieServer.put(`/${_id}`, { title, overview, poster_path, popularity, tags })

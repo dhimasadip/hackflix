@@ -93,6 +93,23 @@ class MovieController {
         }
 
     }
+
+    static async update(req,res,next) {
+        const { id } = req.params
+        const key = `movie_${id}`
+        let updatedMovie = req.body
+        updatedMovie['_id'] = id
+
+        try {
+            const { data } = await MovieServer.put(`/${id}`)
+            await redis.del(key)
+            await redis.set(key, JSON.stringify(updatedMovie))
+            res.status(200).json(updatedMovie)
+        } catch (err) {
+            console.log(err)
+        }
+       
+    }
 }
 
 module.exports = MovieController

@@ -3,6 +3,7 @@ import Card from '../components/Card'
 import Modal from '../components/Modal'
 import { gql, useQuery, useMutation } from '@apollo/client'
 import { Button } from 'react-bootstrap'
+import { movieFavorites } from '../config/graphql'
 
 const GET_MOVIES = gql`
     query{
@@ -74,16 +75,19 @@ export default () => {
         setShowAdd(false)
     }
 
+    const addFav = (movie) => {
+        const [...currFav] = movieFavorites()
+        const current = currFav.filter(el => el.title != movie.title)
+        movieFavorites([...current, movie])
+    }
 
     return (
         <div className="mt-3 w-100 d-flex flex-column justify-content-between">
             <div className="w-100 d-flex justify-content-end pr-5 mb-4">
                 <Button variant="dark" onClick={() => setShowAdd(true)}>Add Movie</Button>
             </div>
-            <Card destroy={destroy} data={data.getMovies} />
-
+            <Card addFavorite={addFav} destroy={destroy} data={data.getMovies} />
             <Modal onCancel={onCancel} showModal={showAdd} add={add} />
-
         </div>
     )
 }

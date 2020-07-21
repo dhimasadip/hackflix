@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import trashCan from '../assets/trash-can.png'
 import heart from '../assets/heart.png'
 
-export default ({ data, showDetail, destroy }) => {
+export default ({ data, addFavorite, destroy }) => {
 
     return (
         <div className="h-100 w-100 d-flex justify-content-center" >
@@ -15,7 +15,7 @@ export default ({ data, showDetail, destroy }) => {
                             <div className="col mb-4">
                                 <Card key={i}>
                                     <Link to={`/movies/${el['_id']}`}>
-                                        <Card.Img height="178px" variant="top" src={el.poster_path}/>
+                                        <Card.Img height="178px" variant="top" src={el.poster_path} />
                                     </Link>
                                     <Card.Body className="pt-1">
                                         <Card.Title>{el.title}</Card.Title>
@@ -24,20 +24,20 @@ export default ({ data, showDetail, destroy }) => {
                                                 <p className="m-0">⭐ {el.popularity}</p>
                                                 <div className="d-flex justify-content-center">
                                                     {
-                                                        el.tags.map((tag,i) => {
+                                                        el.tags.map((tag, i) => {
                                                             return (
                                                                 <Badge key={i} className="ml-2" variant="secondary">
-                                                                    { tag }
+                                                                    {tag}
                                                                 </Badge>
                                                             )
                                                         })
                                                     }
                                                 </div>
                                             </div>
-                                        <div className="w-100 d-flex justify-content-around mt-3">
-                                            <img src={heart}></img>
-                                            <img width={15} height={20} src={trashCan} onClick={() => destroy(el['_id'])}></img>
-                                        </div>
+                                            <div className="w-100 d-flex justify-content-around mt-3">
+                                                <img style={{ cursor: 'pointer' }} src={heart} onClick={() => addFavorite(el)}></img>
+                                                <img style={{ cursor: 'pointer' }} width={15} height={20} src={trashCan} onClick={() => destroy(el['_id'])}></img>
+                                            </div>
                                         </Card.Text>
                                     </Card.Body>
                                 </Card>
