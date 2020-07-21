@@ -1,0 +1,17 @@
+html, body{
+    background-color: #141414 !important;
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+    max-width: 6vw;
+}
+
+.carousel-control-prev:hover,
+.carousel-control-next:hover {
+    background-color: #141414a2;
+}
+
+.bg-flix{
+    background-color: #141414 !important;
+}

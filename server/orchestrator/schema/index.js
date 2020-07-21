@@ -28,18 +28,26 @@ const typeDefs = gql`
   type deleteResult {
     n: String
     ok: String
-    deletedCount: String
   }
 
   type Query {
-    movies: [Movie]
-    tvs: [Tv]
+    getMovies: [Movie]
+    getTv: [Tv]
     movie(_id: String): Movie
     tv(_id: String): Tv
     entertainme: AllItems
   }
 
   input MovieInput {
+    title: String
+    overview: String
+    poster_path: String
+    popularity: Float
+    tags: String
+  }
+
+  input MovieEdit {
+    _id: String
     title: String
     overview: String
     poster_path: String
@@ -57,6 +65,7 @@ const typeDefs = gql`
 
   type Mutation {
     addMovie(movie: MovieInput ) : Movie
+    editMovie(edit: MovieEdit ) : deleteResult
     addTv(tv: TvInput ) : Tv
     deleteMovie(_id: String) : deleteResult
     deleteTv(_id: String) : deleteResult

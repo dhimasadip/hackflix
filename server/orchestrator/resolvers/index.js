@@ -3,12 +3,14 @@ const { tvServer, movieServer } = require('../config/axios')
 
 const resolvers = {
   Query: {
-    movies: () => {
+    getMovies: () => {
       return movieServer.get('/')
-        .then(({ data }) => data)
+        .then(({ data }) => {
+          return data
+        })
         .catch(console.log)
     },
-    tvs: () => {
+    getTv: () => {
       return tvServer.get('/')
         .then(({ data }) => data)
         .catch(console.log)
@@ -50,7 +52,14 @@ const resolvers = {
         .then(({ data }) => data.ops[0])
         .catch(console.log)
     },
+    editMovie: (_, args) => {
+      console.log(args.edit, '<<<<<<')
+      const { _id, title, overview, poster_path, popularity, tags } = args.edit
 
+      return movieServer.put(`/${_id}`, { title, overview, poster_path, popularity, tags })
+        .then(({ data }) => data.result)
+        .catch(console.log)
+    },
     addTv: (_, args) => {
       const { title, overview, poster_path, popularity, tags } = args.tv
 

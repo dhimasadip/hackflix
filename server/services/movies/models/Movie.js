@@ -19,6 +19,10 @@ class MovieModel {
     static delete(id) {
         return movie.deleteOne({ _id: ObjectId(id) })
     }
+
+    static update(updateMovie, id) {
+        return movie.updateOne({_id: ObjectId(`${id}`)}, {$set: updateMovie})
+    }
 }
 
 module.exports = MovieModel

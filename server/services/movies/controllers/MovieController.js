@@ -40,6 +40,24 @@ class MovieController {
       .then((data) => res.status(200).json(data))
       .catch(console.log);
   }
+
+  static edit(req,res,next) {
+    const { id } = req.params;
+    const { title, overview, poster_path, popularity, tags } = req.body;
+    const arrTags = tags.split(",").map((el) => el.trim());
+
+    const updateMovie = {
+      title,
+      overview,
+      poster_path,
+      popularity: +popularity,
+      tags: arrTags,
+    };
+
+    Movie.update(updateMovie, id)
+      .then((data) => res.status(200).json(data))
+      .catch(console.log);
+  }
 }
 
 module.exports = MovieController;
