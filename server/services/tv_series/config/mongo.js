@@ -1,5 +1,5 @@
 const { MongoClient } = require('mongodb')
-const db_url = 'mongodb://localhost:27017'
+const db_url = 'mongodb://mongo:27017'
 const client = new MongoClient(db_url, { useNewUrlParser: true, useUnifiedTopology: true })
 const db_name = process.env.DATABASE_NAME
 

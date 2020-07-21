@@ -1,0 +1,20 @@
+version: '3'
+
+services:
+  tv:
+    build: ./services/tv_series
+    ports:
+      - "4002:3002"
+  movies:
+    build: ./services/movies
+    ports:
+      - "4001:3001"
+  orchestrator:
+    build: ./orchestrator
+    ports:
+      - "4003:3000"
+  mongo:
+    image: "mongo:4.0"
+    ports: 
+      - "17017:27017"
+    command: mongod
