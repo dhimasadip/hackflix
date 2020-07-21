@@ -5,6 +5,31 @@ import { gql, useQuery, useMutation } from '@apollo/client'
 import { Button } from 'react-bootstrap'
 import { movieFavorites } from '../config/graphql'
 
+
+const GET_ALL = gql`
+    query {
+        entertainme {
+            movies{
+                _id
+                title
+                overview
+                popularity
+                tags
+                poster_path
+            }
+            tvs {
+                _id
+                title
+                overview
+                popularity
+                tags
+                poster_path
+            }
+        }
+        
+    }
+`
+
 const GET_MOVIES = gql`
     query{
         getMovies{
@@ -45,15 +70,11 @@ export default () => {
     const [showAdd, setShowAdd] = useState(false)
     const { loading, error, data } = useQuery(GET_MOVIES)
     const [addMovie] = useMutation(ADD_MOVIE, {
-        refetchQueries: [{
-            query: GET_MOVIES
-        }]
+        refetchQueries: [{ query: GET_MOVIES }, { query: GET_ALL }]
     })
 
     const [deleteMovie] = useMutation(DELETE_MOVIE, {
-        refetchQueries: [{
-            query: GET_MOVIES
-        }]
+        refetchQueries: [{ query: GET_MOVIES }, { query: GET_ALL }]
     })
 
     if (loading) return <p className="mt-5"> Loading... </p>
@@ -86,7 +107,7 @@ export default () => {
             <div className="w-100 d-flex justify-content-end pr-5 mb-4">
                 <Button variant="dark" onClick={() => setShowAdd(true)}>Add Movie</Button>
             </div>
-            <Card addFavorite={addFav} destroy={destroy} data={data.getMovies} />
+            <Card type="movies" addFavorite={addFav} destroy={destroy} data={data.getMovies} />
             <Modal onCancel={onCancel} showModal={showAdd} add={add} />
         </div>
     )

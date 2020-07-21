@@ -17,6 +17,9 @@ export default () => {
                     <Link to="/tv">
                         <Button variant="dark">Tv Series</Button>
                     </Link>
+                    <Link to="/myFav">
+                        <Button variant="dark">My Favorite</Button>
+                    </Link>
                 </Nav>
             </Navbar>
         </div>

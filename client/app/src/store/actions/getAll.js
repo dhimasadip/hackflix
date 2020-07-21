@@ -1,9 +1,9 @@
 import React from 'react'
 
-export const getMovies = (movies) => {
+export const getAll = (movies) => {
     return (dispatch) => {
         dispatch({
-            type: 'GET_MOVIES',
+            type: 'GET_ALL',
             payload: {
                 movies
             }

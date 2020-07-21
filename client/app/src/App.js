@@ -6,6 +6,7 @@ import Home from './pages/Home'
 import Movies from './pages/Movies'
 import Tv from './pages/TvSeries'
 import MovieDetail from './pages/MovieDetail'
+import MyFav from './pages/MyFav'
 
 function App() {
 
@@ -18,6 +19,7 @@ function App() {
             <Route exact path="/movies" component={Movies} />
             <Route exact path="/movies/:id" component={MovieDetail} />
             <Route exact path="/tv" component={Tv} />
+            <Route exact path="/myFav" component={MyFav} />
           </div>
         </Switch>
       </Router>
