@@ -77,7 +77,7 @@ export default () => {
         refetchQueries: [{ query: GET_MOVIES }, { query: GET_ALL }]
     })
 
-    if (loading) return <p className="mt-5"> Loading... </p>
+    if (loading) return <p className="w-100 mt-5 text-center text-secondary"> Loading... </p>
 
     const add = (newMovie) => {
         addMovie({
@@ -107,6 +107,9 @@ export default () => {
             <div className="w-100 d-flex justify-content-end pr-5 mb-4">
                 <Button variant="dark" onClick={() => setShowAdd(true)}>Add Movie</Button>
             </div>
+            {
+                !data.length > 0 && <h5 className="mt-5 text-center text-secondary">No Data</h5>
+            }
             <Card type="movies" addFavorite={addFav} destroy={destroy} data={data.getMovies} />
             <Modal onCancel={onCancel} showModal={showAdd} add={add} />
         </div>

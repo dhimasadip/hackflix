@@ -17,10 +17,10 @@ export default (props) => {
         <div className="w-100">
             <Carousel indicators={false} nextIcon={nextIcon} className="bg-dark w-100">
                 {
-                    data &&
+                    data.length > 0 &&
                     separatedData.map((nested, i) => {
                         return (
-                            <Carousel.Item style={{backgroundColor: '#141414'}} key={i}>
+                            <Carousel.Item style={{ backgroundColor: '#141414' }} key={i}>
                                 <div className="d-flex justify-content-center flex-row">
                                     {
                                         nested.map((el, idx) => {
@@ -39,6 +39,12 @@ export default (props) => {
                             </Carousel.Item>
                         )
                     })
+                }
+                {
+                    !data.length > 0 &&
+                    <Carousel.Item style={{ backgroundColor: '#141414' }}>
+                        <p className="text-center text-secondary">No Data</p>
+                    </Carousel.Item>
                 }
             </Carousel>
         </div>

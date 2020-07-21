@@ -9,7 +9,7 @@ export default ({ data, addFavorite, destroy, type }) => {
         <div className="h-100 w-100 d-flex justify-content-center" >
             <div className="row row-cols-1 row-cols-md-4" style={{ width: '95%' }}>
                 {
-                    data.length > 0 && data.map((el, i) => {
+                    data && data.map((el, i) => {
                         return (
                             <div className="col mb-4">
                                 <Card key={i}>

@@ -112,7 +112,8 @@ export default () => {
         })
     }
     
-    if (loading) return <p>Loading...</p>
+    if (loading) return <p className="w-100 mt-5 text-center text-secondary"> Loading... </p>
+
 
     return (
         <div className="row w-100">
